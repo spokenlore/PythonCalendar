@@ -41,18 +41,25 @@ def main():
 		else:
 			print "Invalid entry. Ending program.\n"
 	else:
-		print "Empty calendar created. Exiting program.\n"
+		print "Empty calendars created. Exiting program.\n"
 
 
 def checkForCalendar():
 	# If calendar.txt does not exist, create a base calendar.txt
 	# Format should be Upcoming, then dated entries
-	if os.path.isfile('calendar.txt'):
-		return True		
+	calendarBool = os.path.isfile("calendar.txt")
+	pastCalendarBool = os.path.isfile("pastCalendar.txt")
+	if calendarBool and pastCalendarBool: 
+		return True
 	else:
-		with open("calendar.txt", 'w') as calendar:
-			calendar.write("Upcoming:\n")
-			calendar.close()
+		if calendarBool:
+			with open("calendar.txt", 'w') as calendar:
+				calendar.write("Upcoming:\n")
+				calendar.close()
+		if pastCalendarBool:
+			with open("pastCalendar.txt", 'w') as pastCalendar:
+				# pastCalendar.write
+				pastCalendar.close()
 		return False
 
 def addUpcoming(calendarEvent):
